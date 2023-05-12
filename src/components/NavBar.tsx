@@ -1,9 +1,14 @@
 import { useState } from "react";
 import "../styles/navbar.css";
 import "../styles/btn/dc-btn.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "/dentist.png";
+import { SignOut } from "@phosphor-icons/react";
+import { useSignOut } from "react-auth-kit";
+import { logout } from "../Auth/logout";
 function NavBar() {
+  const signOut = useSignOut();
+  const nav = useNavigate();
   const loc = useLocation();
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
@@ -45,7 +50,16 @@ function NavBar() {
             </Link>
           </li>
           <li>
-            <button className="dc-button">Déconecter</button>
+            <button
+              onClick={() => {
+                logout();
+                signOut();
+                nav("/login");
+              }}
+              className="dc-button"
+            >
+              <SignOut />
+            </button>
           </li>
         </ul>
       </div>

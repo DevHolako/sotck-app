@@ -1,4 +1,12 @@
-export const data = [
+export type Client = {
+  key: number;
+  nom: string;
+  prenom: string;
+  email: string;
+  address: string;
+};
+
+export const data: Client[] = [
   {
     key: 1,
     nom: "Linnet",
