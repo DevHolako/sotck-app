@@ -1,12 +1,13 @@
 import DataTable from "react-data-table-component";
 import "../../styles/table/index.css";
+import HeaderTable from "./HeaderTable";
 interface Props {
   columns: any[];
   customStyles?: any;
   HandleSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   data: any[];
   pending?: boolean;
-  title?: string;
+  type: "Client" | "Stock";
 }
 
 function Table({
@@ -15,7 +16,7 @@ function Table({
   HandleSearch,
   data,
   pending,
-  title,
+  type,
 }: Props) {
   return (
     <div className=" container card">
@@ -24,7 +25,7 @@ function Table({
           <input
             type="text"
             name="text"
-            className="input"
+            className="inputSearch"
             placeholder="search..."
             onChange={HandleSearch}
           />
@@ -89,7 +90,7 @@ function Table({
         fixedHeader
         responsive
         highlightOnHover
-        title={title}
+        title={<HeaderTable type={type} />}
         // onRowClicked={(row) => alert(row.key)}
         // progressComponent={<CustomLoader />}
 
@@ -98,6 +99,7 @@ function Table({
         // onSelectedRowsChange={({ selectedRows }) =>
         //   console.log(selectedRows.map((row) => row.key))
         // }
+        dense
         progressPending={pending}
       />
     </div>

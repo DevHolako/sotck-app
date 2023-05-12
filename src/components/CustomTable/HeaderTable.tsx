@@ -1,21 +1,21 @@
-import { Pencil } from "@phosphor-icons/react";
-import { ClientDataType } from "../columns_client";
+import { PlusCircle } from "@phosphor-icons/react";
 import { Modal, useMantineTheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import Card from "../Cards/Card";
+import Card from "./Cards/Card";
 
 type Props = {
-  row: ClientDataType;
+  type: "Client" | "Stock";
 };
 
-function EditRow({ row }: Props) {
+function HeaderTable({ type }: Props) {
   const [opened, { open, close }] = useDisclosure(false);
   const theme = useMantineTheme();
 
   return (
-    <>
-      <Pencil
-        key={row.key}
+    <div className="table-header">
+      <span className="table-title">{`${type} Table`}</span>
+      <PlusCircle
+        className="ico"
         onClick={() => {
           open();
           // dispatch(fetchData());
@@ -37,10 +37,10 @@ function EditRow({ row }: Props) {
           blur: 3,
         }}
       >
-        <Card method="Modifier" type="Client" id={row.key} />
+        <Card method="Ajouter" type={type} />
       </Modal>
-    </>
+    </div>
   );
 }
 
-export default EditRow;
+export default HeaderTable;
