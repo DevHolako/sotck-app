@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
             element: <Client />,
           },
           {
-            path: "stock",
+            path: "Stock",
             element: <Stock />,
           },
           {
