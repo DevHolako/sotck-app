@@ -7,8 +7,6 @@ import axios, { AxiosError } from "axios";
 import { User, loginData } from "../helpers/types";
 import { useNavigate } from "react-router-dom";
 function Login() {
-  console.log("mode => ", import.meta.env.MODE);
-  console.log("api => ", import.meta.env.VITE_API_URL);
   const navigate = useNavigate();
   const isAuthenticated = useIsAuthenticated();
   const email = useRef<HTMLInputElement>(null);
