@@ -1,9 +1,10 @@
 type User = {
-  token: string;
+  accessToken: string;
+  refreshToken: string;
 };
 
 type loginData = {
-  email: string;
+  username: string;
   password: string;
 };
 

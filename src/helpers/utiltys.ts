@@ -1,3 +1,4 @@
+import { useAuthHeader } from "react-auth-kit";
 import { useAppSelector } from "./hookes";
 
 const isLogedIn = () => {
@@ -6,4 +7,9 @@ const isLogedIn = () => {
   return false;
 };
 
-export { isLogedIn };
+const userToken = () => {
+  const token = useAuthHeader();
+  return token();
+};
+
+export { isLogedIn, userToken };
