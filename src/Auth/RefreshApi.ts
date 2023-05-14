@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createRefresh } from "react-auth-kit";
 export const refreshApi = createRefresh({
-  interval: 1,
+  interval: 10,
   // Refreshs the token in every 10 minutes
   refreshApiCallback: async () => {
     try {
@@ -12,8 +12,7 @@ export const refreshApi = createRefresh({
         }
       );
       const { accessToken } = response.data;
-      console.log(accessToken);
-      if (!accessToken) throw new Error();
+      if (!accessToken) throw new Error("Unautoraized");
       return {
         isSuccess: true,
         newAuthToken: accessToken as string,

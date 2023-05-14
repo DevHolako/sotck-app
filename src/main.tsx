@@ -12,7 +12,12 @@ import "react-toastify/dist/ReactToastify.css";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <AuthProvider authName="jwt-aut" authType="cookie" refresh={refreshApi}>
+      <AuthProvider
+        authName="jwt-aut"
+        authType="cookie"
+        refresh={refreshApi}
+        cookieSecure={import.meta.env.VITE_ENV === "produiction" ? true : false}
+      >
         <App />
         <ToastContainer />
       </AuthProvider>

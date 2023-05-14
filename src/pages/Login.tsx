@@ -39,12 +39,10 @@ function Login() {
       );
       const { accessToken } = response.data;
       signIn({
-        token: accessToken,
+        token: accessToken as string,
         expiresIn: 10,
         tokenType: "Bearer",
         authState: { user: data.username },
-        refreshToken: accessToken,
-        refreshTokenExpireIn: 10,
       });
       console.log("lol");
       navigate("/");
