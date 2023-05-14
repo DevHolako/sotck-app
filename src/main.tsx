@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         authName="jwt-aut"
         authType="cookie"
         refresh={refreshApi}
-        cookieSecure={import.meta.env.VITE_ENV === "produiction" ? true : false}
+        cookieSecure={import.meta.env.VITE_ENV === "production" ? true : false}
       >
         <App />
         <ToastContainer />
