@@ -31,7 +31,7 @@ type Items = {
 };
 
 interface ItemsState {
-  items: [] | Items[];
+  items: Items[];
   status: "idle" | "pending" | "succeeded" | "failed";
   error: string | null;
 }

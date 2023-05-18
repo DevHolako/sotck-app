@@ -1,40 +1,5 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Items, ItemsState } from "@helpers/types";
-import JwtAxios from "@/app/axios";
-
-export const GetAllClients = createAsyncThunk(
-  "client/GetAllClients",
-  async (_, thunkAPI) => {
-    try {
-      const response = await JwtAxios.get("/api/clients");
-      return response.data;
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-export const UpdateClient = createAsyncThunk(
-  "client/UpdateClient",
-  async (_, thunkAPI) => {
-    try {
-      const response = await JwtAxios.post<Items>("/api/clients");
-      return response.data;
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-export const DeleteClient = createAsyncThunk(
-  "client/GetAllClients",
-  async (_, thunkAPI) => {
-    try {
-      const response = await JwtAxios.get("/api/clients");
-      return response.data;
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
+import { ItemsState } from "@helpers/types";
 
 const initialState: ItemsState = {
   items: [],
@@ -42,27 +7,11 @@ const initialState: ItemsState = {
   error: null,
 };
 
-const UserSlice = createSlice({
+const StockSlice = createSlice({
   name: "sotck",
   initialState,
   reducers: {},
-  extraReducers(builder) {
-    builder
-      .addCase(GetAllClients.pending, (state) => {
-        state.status = "pending";
-      })
-      .addCase(
-        GetAllClients.fulfilled,
-        (state, action: PayloadAction<Items[]>) => {
-          state.status = "succeeded";
-          state.items = action.payload;
-        }
-      )
-      .addCase(GetAllClients.rejected, (state, action: PayloadAction<any>) => {
-        state.status = "failed";
-        state.error = action.payload;
-      });
-  },
+  extraReducers() {},
 });
 
-export default UserSlice.reducer;
+export default StockSlice.reducer;
