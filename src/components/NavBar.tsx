@@ -1,13 +1,10 @@
 import { useState } from "react";
-import "../styles/navbar.css";
-import "../styles/btn/dc-btn.css";
+import "@styles/navbar/index.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "/dentist.png";
 import { SignOut } from "@phosphor-icons/react";
-import { useSignOut } from "react-auth-kit";
-import { logout } from "../Auth/logout";
+import { logout } from "@/helpers/Requests";
 function NavBar() {
-  const signOut = useSignOut();
   const nav = useNavigate();
   const loc = useLocation();
   const [clicked, setClicked] = useState(false);
@@ -51,9 +48,8 @@ function NavBar() {
           </li>
           <li>
             <button
-              onClick={() => {
-                logout();
-                signOut();
+              onClick={async () => {
+                await logout();
                 nav("/login");
               }}
               className="dc-button"

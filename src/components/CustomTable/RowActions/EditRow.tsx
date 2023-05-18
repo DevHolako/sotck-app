@@ -1,11 +1,10 @@
 import { Pencil } from "@phosphor-icons/react";
-import { ClientDataType } from "../columns_client";
 import { Modal, useMantineTheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import Card from "../Cards/Card";
-
+import { Client, Items } from "@/helpers/types";
+import Card from "@compo/CustomTable/Cards/Card";
 type Props = {
-  row: ClientDataType;
+  row: Client | Items;
 };
 
 function EditRow({ row }: Props) {
@@ -15,7 +14,7 @@ function EditRow({ row }: Props) {
   return (
     <>
       <Pencil
-        key={row.key}
+        key={row._id}
         onClick={() => {
           open();
           // dispatch(fetchData());
@@ -37,7 +36,7 @@ function EditRow({ row }: Props) {
           blur: 3,
         }}
       >
-        <Card method="Modifier" type="Client" id={row.key} />
+        <Card method="Modifier" type="Client" id={row._id} />
       </Modal>
     </>
   );

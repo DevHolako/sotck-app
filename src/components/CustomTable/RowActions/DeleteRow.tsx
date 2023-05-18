@@ -1,18 +1,19 @@
 // import { useAppDispatch } from "../../helpers/hookes";
+import { DeleteClient } from "@/app/features/clients/clientSlice";
+import { useAppDispatch } from "@/helpers/Hooks/redux-hooks";
+import { Client, Items } from "@/helpers/types";
 import { Trash } from "@phosphor-icons/react";
-import { ClientDataType } from "../columns_client";
 
 type Props = {
-  row: ClientDataType;
+  row: Client | Items;
 };
 function DeleteRow({ row }: Props) {
-  //   const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   return (
     <Trash
-      key={row.key}
+      key={row._id}
       onClick={() => {
-        alert(row.key);
-        // dispatch(fetchData());
+        dispatch(DeleteClient(row._id));
       }}
       size={24}
       color="#ff726f"

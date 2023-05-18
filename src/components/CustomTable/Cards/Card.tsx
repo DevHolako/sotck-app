@@ -4,7 +4,7 @@ import "./card.css";
 type CardProps = {
   method: "Ajouter" | "Modifier";
   type: "Client" | "Stock";
-  id?: number;
+  id?: string;
 };
 
 function Card({ method, type, id }: CardProps) {

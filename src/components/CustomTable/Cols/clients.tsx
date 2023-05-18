@@ -1,16 +1,9 @@
+import { Client } from "@/helpers/types";
 import { TableColumn } from "react-data-table-component";
-import DeleteRow from "./RowActions/DeleteRow";
-import EditRow from "./RowActions/EditRow";
+import EditRow from "../RowActions/EditRow";
+import DeleteRow from "../RowActions/DeleteRow";
 
-export type ClientDataType = {
-  key: number;
-  nom: string;
-  prenom: string;
-  email: string;
-  address: string;
-};
-
-export const columns: TableColumn<ClientDataType>[] = [
+export const columns: TableColumn<Client>[] = [
   {
     name: "Nom Complete",
     selector: (row) => row.nom + " " + row.prenom,

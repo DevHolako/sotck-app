@@ -19,7 +19,7 @@ function Table({
   type,
 }: Props) {
   return (
-    <div className=" container card">
+    <div className="container card">
       {!pending && (
         <div className="input-container container">
           <input
@@ -93,14 +93,10 @@ function Table({
         title={<HeaderTable type={type} />}
         // onRowClicked={(row) => alert(row.key)}
         // progressComponent={<CustomLoader />}
-
-        selectableRows
-        selectableRowsHighlight
         // onSelectedRowsChange={({ selectedRows }) =>
         //   console.log(selectedRows.map((row) => row.key))
         // }
-        dense
-        progressPending={pending}
+        // progressPending={pending}
       />
     </div>
   );
