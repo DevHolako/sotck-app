@@ -9,15 +9,15 @@ import NotFound from "../pages/NotFound";
 
 export const router = createBrowserRouter([
   {
-    path: "login",
+    index: true,
     element: <Login />,
   },
 
   {
+    path: "/dash",
     element: <RequireLogin />,
     children: [
       {
-        path: "/",
         element: <Layout />,
         children: [
           {
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
             element: <Client />,
           },
           {
-            path: "Stock",
+            path: "stock",
             element: <Stock />,
           },
           {

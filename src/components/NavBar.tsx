@@ -13,7 +13,7 @@ function NavBar() {
   };
   return (
     <nav className="">
-      <Link to="/">
+      <Link to="/dash">
         <img src={logo} alt="logo" height={85} />
       </Link>
 
@@ -22,7 +22,7 @@ function NavBar() {
           <li>
             <Link
               className={loc.pathname == "/" ? "active" : ""}
-              to="/"
+              to=""
               onClick={() => setClicked(false)}
             >
               Home
@@ -31,7 +31,7 @@ function NavBar() {
           <li>
             <Link
               className={loc.pathname == "/stock" ? "active" : ""}
-              to="/stock"
+              to="stock"
               onClick={() => setClicked(false)}
             >
               Stock
@@ -40,7 +40,7 @@ function NavBar() {
           <li>
             <Link
               className={loc.pathname == "/invoice" ? "active" : ""}
-              to="/invoice"
+              to="invoice"
               onClick={() => setClicked(false)}
             >
               Facture
@@ -50,7 +50,7 @@ function NavBar() {
             <button
               onClick={async () => {
                 await logout();
-                nav("/login");
+                nav("/");
               }}
               className="dc-button"
             >

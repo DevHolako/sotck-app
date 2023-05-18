@@ -29,7 +29,7 @@ function Login() {
       password: password.current.value,
     };
     await LoginRequest(data);
-    navigate("/");
+    navigate("/dash");
   };
 
   return (

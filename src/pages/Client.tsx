@@ -5,7 +5,6 @@ import { customStyles } from "@compo/CustomTable/styles";
 import { useAppDispatch, useAppSelector } from "@/helpers/Hooks/redux-hooks";
 import type { Client } from "@/helpers/types";
 import { useEffect } from "react";
-
 //** styles
 function Client() {
   const { filteredData } = useAppSelector((s) => s.client);
