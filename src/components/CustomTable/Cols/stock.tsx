@@ -6,7 +6,7 @@ import DeleteRow from "../RowActions/DeleteRow";
 export const columns: TableColumn<Items>[] = [
   {
     name: "id",
-    selector: (row) => row.key,
+    selector: (row) => row._id,
     sortable: true,
     reorder: true,
   },
