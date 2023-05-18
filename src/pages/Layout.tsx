@@ -1,7 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import { useEffect } from "react";
 
 function Layout() {
+  const nav = useNavigate();
+  useEffect(() => {}, []);
   return (
     <>
       <header>

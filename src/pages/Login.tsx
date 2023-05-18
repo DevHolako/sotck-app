@@ -1,64 +1,36 @@
-import "../styles/login/index.css";
-import { useRef, useEffect } from "react";
-import { type FormEvent } from "react"; // import FormEvent type
-import LoginButton from "../components/LoginButton";
-import { useIsAuthenticated, useSignIn } from "react-auth-kit";
-import axios, { AxiosError } from "axios";
-import { User, loginData } from "../helpers/types";
+/*css*/
+import "@styles/login/index.css";
+/*css*/
+import { useAppSelector } from "@/helpers/Hooks/redux-hooks";
 import { useNavigate } from "react-router-dom";
+import { FormEvent, useEffect, useRef } from "react";
+import { toast } from "react-toastify";
+import LoginButton from "@compo/LoginButton";
+import { LoginRequest } from "@/helpers/Requests";
+
 function Login() {
+  const { userInfo } = useAppSelector((s) => s.auth);
   const navigate = useNavigate();
-  const isAuthenticated = useIsAuthenticated();
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
-  const signIn = useSignIn();
-
-  const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (email.current && password.current) {
-      const data = {
-        username: email.current.value,
-        password: password.current.value,
-      };
-      LoginRequest(data);
-    }
-  };
-
-  const LoginRequest = async (data: loginData) => {
-    const url = import.meta.env.VITE_API_URL;
-    try {
-      const response = await axios.post<User>(
-        `${url}/api/login`,
-        JSON.stringify(data),
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const { accessToken } = response.data;
-      signIn({
-        token: accessToken as string,
-        expiresIn: 10,
-        tokenType: "Bearer",
-        authState: { user: data.username },
-      });
-      console.log("lol");
-      navigate("/");
-    } catch (error) {
-      if (error && error instanceof AxiosError)
-        console.log("error =>", error.response?.data.message);
-    }
-  };
-
   useEffect(() => {
-    if (isAuthenticated()) {
+    if (userInfo !== null) {
       navigate("/");
     }
+  }, []);
 
-    return () => {};
-  }, [isAuthenticated]);
+  const HandleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email.current || !password.current) {
+      return toast.info("all fileds are required");
+    }
+    const data = {
+      username: email.current.value,
+      password: password.current.value,
+    };
+    await LoginRequest(data);
+    navigate("/");
+  };
 
   return (
     <main>
@@ -74,7 +46,6 @@ function Login() {
             <label>Password</label>
           </div>
           <LoginButton type={"submit"} label="Love you 💖" />
-          <button type="reset">reste</button>
         </form>
       </div>
     </main>

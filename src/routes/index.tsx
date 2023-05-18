@@ -4,7 +4,7 @@ import Layout from "../pages/Layout";
 import Login from "../pages/Login";
 import Stock from "../pages/Stock";
 import Invoice from "../pages/Invoice";
-import RequireLogin from "../helpers/RequireLogin";
+import RequireLogin from "../components/RequireLogin";
 import NotFound from "../pages/NotFound";
 
 export const router = createBrowserRouter([
