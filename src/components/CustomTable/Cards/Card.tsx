@@ -12,7 +12,7 @@ function Card({ method, type, id }: CardProps) {
     <>
       <h3 className="t-center">{`${method} ${type}`}</h3>
       {type == "Client" && <ClientCard method={method} id={id} />}
-      {type == "Stock" && <StockCard />}
+      {type == "Stock" && <StockCard method={method} id={id} />}
     </>
   );
 }

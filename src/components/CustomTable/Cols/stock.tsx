@@ -4,15 +4,15 @@ import EditRow from "../RowActions/EditRow";
 import DeleteRow from "../RowActions/DeleteRow";
 
 export const columns: TableColumn<Items>[] = [
+  // {
+  //   name: "id",
+  //   allowOverflow: false,
+  //   selector: (row) => row._id,
+  //   reorder: true,
+  // },
   {
-    name: "id",
-    selector: (row) => row._id,
-    sortable: true,
-    reorder: true,
-  },
-  {
-    name: "nom",
-    selector: (row) => row.nom,
+    name: "designation",
+    selector: (row) => row.name,
     sortable: true,
     reorder: true,
   },
@@ -21,7 +21,7 @@ export const columns: TableColumn<Items>[] = [
     cell: (row) => (
       <div className="actions">
         <EditRow row={row} />
-        <DeleteRow row={row} />
+        <DeleteRow whome="Items" row={row} />
       </div>
     ),
     sortable: false,
