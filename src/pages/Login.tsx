@@ -3,12 +3,14 @@ import "@styles/login/index.css";
 /*css*/
 import { useAppSelector } from "@/helpers/Hooks/redux-hooks";
 import { useNavigate } from "react-router-dom";
-import { FormEvent, useEffect, useRef } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import LoginButton from "@compo/LoginButton";
 import { LoginRequest } from "@/helpers/Requests";
+import Loader from "@/components/Loader";
 
 function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const { userInfo } = useAppSelector((s) => s.auth);
   const navigate = useNavigate();
   const email = useRef<HTMLInputElement>(null);
@@ -24,11 +26,13 @@ function Login() {
     if (!email.current || !password.current) {
       return toast.info("all fileds are required");
     }
+    setIsLoading(true);
     const data = {
       username: email.current.value,
       password: password.current.value,
     };
     await LoginRequest(data);
+    setIsLoading(true);
     navigate("/dash");
   };
 
@@ -45,7 +49,11 @@ function Login() {
             <input required name="" type="password" ref={password} />
             <label>Password</label>
           </div>
-          <LoginButton type={"submit"} label="Love you 💖" />
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <LoginButton type={"submit"} label="Love you 💖" />
+          )}
         </form>
       </div>
     </main>
