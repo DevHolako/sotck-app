@@ -21,17 +21,18 @@ type Client = {
 
 interface ClientState {
   clients: Client[];
-  filteredData: [] | Client[]; // Filtered data
+  filteredData: Client[]; // Filtered data
   status: "idle" | "pending" | "succeeded" | "failed";
   error: string | null;
 }
 type Items = {
   _id: string;
-  nom: string;
+  name: string;
 };
 
 interface ItemsState {
   items: Items[];
+  filteredData: Items[]; // Filtered data
   status: "idle" | "pending" | "succeeded" | "failed";
   error: string | null;
 }

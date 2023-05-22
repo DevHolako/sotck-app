@@ -4,7 +4,8 @@ import JwtAxios from "@/app/axios";
 import { toast } from "react-toastify";
 type ClientPayload = {
   message: string;
-  client: Client;
+  client?: Client;
+  clients?: Client[];
 };
 export const GetAllClients = createAsyncThunk(
   "client/GetAllClients",
@@ -89,9 +90,10 @@ const ClientSlice = createSlice({
       })
       .addCase(
         GetAllClients.fulfilled,
-        (state, action: PayloadAction<Client[]>) => {
+        (state, action: PayloadAction<ClientPayload>) => {
           state.status = "succeeded";
-          state.clients = action.payload;
+          const { clients } = action.payload;
+          state.clients = clients as Client[];
           state.filteredData = state.clients;
         }
       )
@@ -109,7 +111,7 @@ const ClientSlice = createSlice({
           state.status = "succeeded";
           const { client, message } = action.payload;
           toast.success(message);
-          state.clients.unshift(client);
+          state.clients.unshift(client as Client);
           state.filteredData = state.clients;
         }
       )
@@ -128,10 +130,10 @@ const ClientSlice = createSlice({
         (state, action: PayloadAction<ClientPayload>) => {
           state.status = "succeeded";
           const { client, message } = action.payload;
-          const { _id } = client;
+          const { _id } = client as Client;
           const index = state.clients.findIndex((obj) => obj._id === _id);
           console.log(index);
-          state.clients[index] = client;
+          state.clients[index] = client as Client;
           console.log(state.clients[index]);
           console.log(client);
           state.filteredData = state.clients;

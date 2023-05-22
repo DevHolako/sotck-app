@@ -27,7 +27,7 @@ export const columns: TableColumn<Client>[] = [
     cell: (row) => (
       <div className="actions">
         <EditRow row={row} />
-        <DeleteRow row={row} />
+        <DeleteRow whome="Client" row={row} />
       </div>
     ),
     sortable: false,
