@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { isLogin } from "@/helpers/functions";
+import { isLogin } from "@/helpers/utils";
 const useAuth = () => {
   const logedIn = isLogin();
   return logedIn;
